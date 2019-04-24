@@ -24,18 +24,20 @@ Here are the code scripts for the imputation on the example dataset in the packa
 data(Chu)
 #### Get cell type information, this step can be negligible if there is no cell type information provided. 
 celltype = gsub("(.+?)(\\_.*)", "\\1", colnames(Chu))
+celltype = as.factor(celltype)
+celltype = as.numeric(celltype)
 
 ```
 ```
 #### Perform Imputation Analysis
-imputed_count = Impute(raw_count = Chu,    ### raw count
-                      labeled = TRUE,     ### if it is false, then celltype information not needed
-                      labels = celltype,  ### cell type information
-                      numCluster = 7,     ### number of cell subpopulations, can be based on prior knwoledge
-                      drop_thre = 0.8,    ### dropout probability threshold set on
-                      rho = 10,           ### step-size
-                      max_iter = 1000,    ### max iteration
-                      tol = 1e-04)        ### tolerance
+imputed_count = Impute(raw_data = as.matrix(Chu),          ### raw count
+                       labeled = TRUE,                     ### if it is false, then celltype information not needed
+                       labels = celltype,                  ### cell type information
+                       numCluster = 7,                     ### number of cell subpopulations, can be based on prior knwoledge
+                       drop_thre = 0.8,                    ### dropout probability threshold set on
+                       rho = 10,                           ### step-size
+                       max_iter = 1000,                    ### max iteration
+                       tol = 1e-04)                        ### tolerance
 #### You can use the imputed_count to do the downstream analysis.
 
 ```
