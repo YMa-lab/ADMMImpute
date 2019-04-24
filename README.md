@@ -28,7 +28,7 @@ celltype = gsub("(.+?)(\\_.*)", "\\1", colnames(Chu))
 ```
 ```
 #### Perform Imputation Analysis
-impute_count = Impute(raw_count = Chu,    ### raw count
+imputed_count = Impute(raw_count = Chu,    ### raw count
                       labeled = TRUE,     ### if it is false, then celltype information not needed
                       labels = celltype,  ### cell type information
                       numCluster = 7,     ### number of cell subpopulations, can be based on prior knwoledge
@@ -36,6 +36,8 @@ impute_count = Impute(raw_count = Chu,    ### raw count
                       rho = 10,           ### step-size
                       max_iter = 1000,    ### max iteration
                       tol = 1e-04)        ### tolerance
+#### You can use the imputed_count to do the downstream analysis.
+
 ```
 ## Contributing
 
