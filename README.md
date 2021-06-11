@@ -43,7 +43,7 @@ imputed_count = Impute(raw_data = as.matrix(Chu),          ### raw count
 ```
 ## Contributing
 
-Please read [ADMMImpute-package.Rd](https://github.com/YingMa0107/Biostat815_Final_Project/man/ADMMImpute-package.Rd) for details on our code of conduct, and the process for submitting pull requests to us.
+Please read [ADMMImpute-package.Rd](https://github.com/YingMa0107/Biostat815_Final_Project/tree/master/man/) for details on our code of conduct, and the process for submitting pull requests to us.
 
 ## Authors
 
