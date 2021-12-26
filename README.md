@@ -1,5 +1,5 @@
 # ADMMImpute
-This package perform imputation on scRNAseq dataset using ADMM algorithm. 
+This package perform imputation on scRNAseq dataset using ADMM algorithm. The model was built originally in the method scImpute [https://www.nature.com/articles/s41467-018-03405-7], with algorithm implemented in a faster version by using ADMM.
 ## Getting Started
 ### Prerequisites
 You need to install devtools, Rcpp,RcppArmadillo
