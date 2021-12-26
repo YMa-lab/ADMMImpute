@@ -13,7 +13,7 @@ install.packages("RcppArmadillo")
 ### Installing
 ```
 library(devtools)
-devtools::install_github("YingMa1993/Biostat815_Final_Project")
+devtools::install_github("YingMa1993/ADMMImpute")
 library(ADMMImpute)
 
 ```
