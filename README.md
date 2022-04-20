@@ -13,7 +13,7 @@ install.packages("RcppArmadillo")
 ### Installing
 ```
 library(devtools)
-devtools::install_github("YingMa1993/ADMMImpute")
+devtools::install_github("YingMa0107/ADMMImpute")
 library(ADMMImpute)
 
 ```
