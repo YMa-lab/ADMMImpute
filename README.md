@@ -38,7 +38,6 @@ imputed_count = Impute(raw_data = as.matrix(Chu),          ### raw count
                        rho = 10,                           ### step-size
                        max_iter = 1000,                    ### max iteration
                        tol = 1e-04)                        ### tolerance
-#### It is 50 times faster than the original R package scImpute. 
 #### You can use the imputed_count to do the downstream analysis.
 
 ```
