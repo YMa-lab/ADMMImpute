@@ -30,6 +30,8 @@ celltype = as.numeric(celltype)
 ```
 ```
 #### Perform Imputation Analysis
+library(peakRAM)
+mem1 <- peakRAM({
 imputed_count = Impute(raw_data = as.matrix(Chu),          ### raw count
                        labeled = TRUE,                     ### if it is false, then celltype information not needed
                        labels = celltype,                  ### cell type information
@@ -38,8 +40,28 @@ imputed_count = Impute(raw_data = as.matrix(Chu),          ### raw count
                        rho = 10,                           ### step-size
                        max_iter = 1000,                    ### max iteration
                        tol = 1e-04)                        ### tolerance
-#### You can use the imputed_count to do the downstream analysis.
-
+})
+#### print the computation time abd efficiency that was cost by ADMMImpute
+print(mem1$Peak_RAM_Used_MiB)
+890.1  ### ADMMImpute use 890.1 MiB!
+print(mem1$Elapsed_Time_sec)
+67.966 ### ADMMImpute cost 70 seconds!
+#### bechmarking the computation time and memory with scImpute
+library(devtools)
+install_github("Vivianstats/scImpute")
+library(scImpute)
+mem2 <- peakRAM({
+scimpute(count_path = "./chu.csv",infile = "csv",  outfile = "csv",out_dir = "./",    labeled = FALSE,   drop_thre = 0.8, Kcluster = 7,ncores = 1)
+})
+#### print the computation time abd efficiency that was cost by scimpute
+print(mem2$Peak_RAM_Used_MiB)### scImpute use 992.3 MiB
+print(mem2$Elapsed_Time_sec)### scImpute use cost seconds, which is 54 times slower than ADMMImpute
+#### compare the results of these two methods
+scImpute_imputed_count = read.csv("./scimpute_count.csv",row.names = 1)
+ADMMImpute_imputed_count = imputed_count
+#### print the correlation of these two impited count
+cor(as.numeric(as.matrix(ADMMImpute_imputed_count)),as.numeric(as.matrix(scImpute_imputed_count)))
+0.9988723
 ```
 ## Contributing
 
